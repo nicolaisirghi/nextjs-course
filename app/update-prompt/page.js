@@ -1,11 +1,11 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 
 import Form from "@components/Form";
 
-const EditPrompt = () => {
+const Component = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     prompt: "",
@@ -61,7 +61,6 @@ const EditPrompt = () => {
     },
     [post, promptId],
   );
-
   return (
     <Form
       type="Edit"
@@ -72,5 +71,11 @@ const EditPrompt = () => {
     />
   );
 };
+
+const EditPrompt = () => (
+  <Suspense>
+    <Component />
+  </Suspense>
+);
 
 export default EditPrompt;
